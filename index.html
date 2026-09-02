@@ -1,0 +1,4421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Eu Sempre Soube Que Era Você</title>
+
+    <meta name="description"
+        content="Uma história que começou antes mesmo de nós percebermos. Marcos & Mariana.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Sacramento&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #05070d;
+            color: #f4f1eb;
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body.locked {
+            overflow: hidden;
+        }
+
+        ::selection {
+            background: #b49a63;
+            color: #05070d;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+            --bg: #05070d;
+            --bg-soft: #090d17;
+            --bg-blue: #0a1324;
+            --gold: #c8aa70;
+            --gold-light: #e2cb98;
+            --white: #f4f1eb;
+            --muted: #9ea4af;
+            --wine: #591f2d;
+            --wine-light: #7e3447;
+            --line: rgba(200, 170, 112, .25);
+            --glass: rgba(255, 255, 255, .035);
+        }
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        .container {
+            width: min(1100px, 90%);
+            margin: 0 auto;
+        }
+
+        .serif {
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .script {
+            font-family: "Sacramento", cursive;
+        }
+
+        .gold {
+            color: var(--gold-light);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+            letter-spacing: .25em;
+        }
+
+        .section {
+            position: relative;
+            padding: 140px 0;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: .7rem;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 400;
+            line-height: .95;
+            margin-bottom: 30px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        /* =========================================================
+           GRAIN
+        ========================================================= */
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: .055;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+        }
+
+        /* =========================================================
+           STARS
+        ========================================================= */
+
+        #stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: .5;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%,
+            100% {
+                opacity: .15;
+            }
+
+            50% {
+                opacity: .8;
+            }
+        }
+
+        /* =========================================================
+           ACCESS SCREEN
+        ========================================================= */
+
+        #accessScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 50% 40%, rgba(35, 59, 100, .3), transparent 35%),
+                linear-gradient(135deg, #03050a, #081121 60%, #05070d);
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
+        }
+
+        #accessScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .access-content {
+            width: min(520px, 90%);
+            text-align: center;
+        }
+
+        .access-small {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: .4em;
+            font-size: .65rem;
+            margin-bottom: 35px;
+        }
+
+        .access-question {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .access-subtitle {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .answer-box {
+            display: flex;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 25px;
+        }
+
+        .answer-box input {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            outline: none;
+            color: white;
+            padding: 15px 5px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .answer-box input::placeholder {
+            color: #646b77;
+        }
+
+        .btn {
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold-light);
+            padding: 15px 28px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: .7rem;
+            transition: .35s;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: #05070d;
+        }
+
+        .access-message {
+            min-height: 60px;
+            margin-top: 25px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .enter-btn {
+            display: none;
+            margin: 10px auto 0;
+        }
+
+        .enter-btn.show {
+            display: inline-block;
+            animation: fadeUp .8s ease forwards;
+        }
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        #main {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        #main.visible {
+            opacity: 1;
+        }
+
+        /* =========================================================
+           MUSIC
+        ========================================================= */
+
+        #musicControl {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 1000;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: rgba(5, 7, 13, .8);
+            backdrop-filter: blur(12px);
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: .4s;
+        }
+
+        #musicControl.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gold);
+            z-index: 10000;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 45%, rgba(33, 54, 91, .45), transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(89, 31, 45, .18), transparent 30%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 170, 112, .08), transparent 70%);
+            filter: blur(20px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .hero-pretitle {
+            font-size: .7rem;
+            letter-spacing: .5em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            animation: fadeUp 1.2s ease forwards;
+        }
+
+        .hero-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 300;
+            line-height: .82;
+            letter-spacing: -.03em;
+            animation: fadeUp 1.5s .2s ease both;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--gold-light);
+        }
+
+        .hero-subtitle {
+            margin: 40px auto 0;
+            max-width: 600px;
+            color: #aaaeb8;
+            line-height: 1.8;
+            font-size: .95rem;
+            animation: fadeUp 1.5s .5s ease both;
+        }
+
+        .hero-date {
+            margin-top: 30px;
+            color: var(--gold);
+            font-size: .7rem;
+            letter-spacing: .35em;
+            animation: fadeUp 1.5s .7s ease both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #777d87;
+            font-size: .65rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 45px;
+            background: linear-gradient(var(--gold), transparent);
+            margin: 12px auto 0;
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0% {
+                transform: scaleY(.3);
+                transform-origin: top;
+            }
+
+            50% {
+                transform: scaleY(1);
+            }
+
+            100% {
+                transform: scaleY(.3);
+                transform-origin: bottom;
+            }
+        }
+
+        /* =========================================================
+           INTRO
+        ========================================================= */
+
+        .intro {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                linear-gradient(180deg, #05070d, #08101e, #05070d);
+        }
+
+        .intro-text {
+            max-width: 800px;
+        }
+
+        .intro-line {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 300;
+            line-height: 1.05;
+            margin: 15px 0;
+        }
+
+        .intro-script {
+            font-family: "Sacramento", cursive;
+            color: var(--gold-light);
+            font-size: clamp(3rem, 7vw, 6rem);
+        }
+
+        /* =========================================================
+           CHAPTER
+        ========================================================= */
+
+        .chapter {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .chapter:nth-child(even) {
+            background: rgba(255, 255, 255, .01);
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .chapter-number {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 10rem;
+            line-height: .7;
+            color: rgba(200, 170, 112, .06);
+            position: absolute;
+            top: 30px;
+            right: 5%;
+            pointer-events: none;
+        }
+
+        .chapter-date {
+            color: var(--gold);
+            font-size: .7rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .chapter-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 400;
+            line-height: .95;
+            margin-bottom: 30px;
+        }
+
+        .chapter-text {
+            color: #aeb2ba;
+            line-height: 2;
+            font-size: .98rem;
+        }
+
+        .chapter-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--gold-light);
+            font-family: "Playfair Display", serif;
+            font-style: italic;
+        }
+
+        .quote {
+            border-left: 1px solid var(--gold);
+            padding-left: 25px;
+            margin: 35px 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.6rem;
+            color: #ddd7ca;
+            font-style: italic;
+        }
+
+        /* =========================================================
+           VISUAL CARDS
+        ========================================================= */
+
+        .visual {
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
+                radial-gradient(circle at 70% 30%, rgba(200,170,112,.12), transparent 40%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual::before {
+            content: "";
+            position: absolute;
+            inset: 15px;
+            border: 1px solid rgba(200, 170, 112, .12);
+        }
+
+        .visual-inner {
+            position: relative;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .visual-symbol {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            filter: grayscale(1);
+            opacity: .7;
+        }
+
+        .visual-caption {
+            color: var(--gold);
+            font-size: .65rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           HUMOR CARDS
+        ========================================================= */
+
+        .humor {
+            margin-top: 30px;
+            padding: 20px 25px;
+            border: 1px solid rgba(200,170,112,.15);
+            background: rgba(200,170,112,.025);
+        }
+
+        .humor-label {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-size: .6rem;
+            margin-bottom: 8px;
+        }
+
+        .humor-text {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+        }
+
+        /* =========================================================
+           FULL QUOTE
+        ========================================================= */
+
+        .quote-section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                radial-gradient(circle at center, rgba(89,31,45,.18), transparent 55%);
+        }
+
+        .big-quote {
+            max-width: 900px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(3rem, 7vw, 7rem);
+            font-weight: 300;
+            line-height: .95;
+        }
+
+        .big-quote small {
+            display: block;
+            margin-top: 35px;
+            font-family: "Inter", sans-serif;
+            font-size: .65rem;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* =========================================================
+           MILESTONE
+        ========================================================= */
+
+        .milestone {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                radial-gradient(circle at center, rgba(200,170,112,.1), transparent 45%),
+                #070a12;
+        }
+
+        .milestone-date {
+            color: var(--gold);
+            font-size: .7rem;
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .milestone-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 300;
+            line-height: .8;
+        }
+
+        .milestone-title span {
+            color: var(--gold-light);
+        }
+
+        .milestone-text {
+            max-width: 650px;
+            margin: 40px auto;
+            color: #aaaeb7;
+            line-height: 2;
+        }
+
+        .love-you {
+            font-family: "Sacramento", cursive;
+            font-size: clamp(4rem, 10vw, 8rem);
+            color: var(--gold-light);
+        }
+
+        /* =========================================================
+           TIMELINE
+        ========================================================= */
+
+        .timeline-section {
+            padding: 150px 0;
+            background: #05070d;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background: linear-gradient(
+                transparent,
+                var(--line),
+                var(--line),
+                transparent
+            );
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 30px 50px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 40px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: #05070d;
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -5px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -5px;
+        }
+
+        .timeline-date {
+            color: var(--gold);
+            font-size: .65rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: .85rem;
+        }
+
+        /* =========================================================
+           COUNTER
+        ========================================================= */
+
+        .counter-section {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #05070d, #091321);
+        }
+
+        .counter-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .counter-box {
+            min-width: 100px;
+        }
+
+        .counter-number {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 3.5rem;
+            color: var(--gold-light);
+        }
+
+        .counter-label {
+            color: #777e89;
+            font-size: .6rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           PLANT
+        ========================================================= */
+
+        .plant-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(60, 91, 65, .15), transparent 45%);
+        }
+
+        .plant-symbol {
+            font-size: 7rem;
+            margin-bottom: 25px;
+            animation: plantFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes plantFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* =========================================================
+           FUTURE
+        ========================================================= */
+
+        .future-section {
+            padding: 150px 0;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(33,54,91,.25), transparent 45%);
+        }
+
+        .future-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .future-card {
+            min-height: 220px;
+            padding: 35px;
+            border: 1px solid rgba(255,255,255,.07);
+            background: rgba(255,255,255,.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: .5s;
+        }
+
+        .future-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(200,170,112,.35);
+            background: rgba(200,170,112,.035);
+        }
+
+        .future-number {
+            color: rgba(200,170,112,.35);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            margin-bottom: auto;
+        }
+
+        .future-card h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .future-card p {
+            color: var(--muted);
+            font-size: .8rem;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           STARS / ALL LIVES
+        ========================================================= */
+
+        .lives-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at center, rgba(200,170,112,.06), transparent 30%),
+                #02040a;
+        }
+
+        .lives-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .lives-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 300;
+            line-height: .85;
+        }
+
+        .lives-title span {
+            color: var(--gold-light);
+        }
+
+        .lives-text {
+            max-width: 600px;
+            margin: 40px auto;
+            color: #969ca8;
+            line-height: 2;
+        }
+
+        /* =========================================================
+           GALLERY
+        ========================================================= */
+
+        .gallery-section {
+            padding: 150px 0;
+            background: #070a11;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            min-height: 300px;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, #0d1627, #111827);
+            border: 1px solid rgba(255,255,255,.06);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 7;
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-column: span 5;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: span 5;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 7;
+        }
+
+        .gallery-item:nth-child(5),
+        .gallery-item:nth-child(6),
+        .gallery-item:nth-child(7) {
+            grid-column: span 4;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            transition: transform .8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #596170;
+            padding: 20px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+        }
+
+        /* =========================================================
+           LETTER
+        ========================================================= */
+
+        .letter-section {
+            min-height: 100vh;
+            padding: 150px 0;
+            background:
+                linear-gradient(180deg, #070a11, #0b0e16);
+        }
+
+        .letter {
+            max-width: 760px;
+            margin: auto;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+            border: 1px solid rgba(200,170,112,.18);
+            padding: clamp(35px, 8vw, 80px);
+            position: relative;
+        }
+
+        .letter::before {
+            content: "";
+            position: absolute;
+            inset: 15px;
+            border: 1px solid rgba(200,170,112,.08);
+            pointer-events: none;
+        }
+
+        .letter-title {
+            font-family: "Sacramento", cursive;
+            color: var(--gold-light);
+            font-size: 4rem;
+            margin-bottom: 30px;
+        }
+
+        .letter p {
+            color: #b9bbc2;
+            line-height: 2;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-signature {
+            font-family: "Sacramento", cursive;
+            color: var(--gold-light);
+            font-size: 3rem;
+            margin-top: 40px;
+        }
+
+        /* =========================================================
+           BIRTHDAY
+        ========================================================= */
+
+        .birthday {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                radial-gradient(circle at center, rgba(89,31,45,.25), transparent 45%);
+        }
+
+        .birthday-small {
+            color: var(--gold);
+            letter-spacing: .4em;
+            text-transform: uppercase;
+            font-size: .65rem;
+            margin-bottom: 30px;
+        }
+
+        .birthday-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(4rem, 11vw, 10rem);
+            font-weight: 300;
+            line-height: .8;
+        }
+
+        .birthday-title span {
+            color: var(--gold-light);
+        }
+
+        .birthday-text {
+            max-width: 600px;
+            margin: 45px auto;
+            color: var(--muted);
+            line-height: 2;
+        }
+
+        /* =========================================================
+           SECRET END
+        ========================================================= */
+
+        .secret-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #020409;
+        }
+
+        .secret-button {
+            margin-top: 30px;
+        }
+
+        .secret-message {
+            max-width: 650px;
+            margin: 40px auto 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            line-height: 1.4;
+            color: var(--gold-light);
+            display: none;
+        }
+
+        .secret-message.show {
+            display: block;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        /* =========================================================
+           FINAL
+        ========================================================= */
+
+        .final {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(circle at center, rgba(33,54,91,.25), transparent 35%),
+                #03050a;
+        }
+
+        .final-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(4rem, 12vw, 11rem);
+            font-weight: 300;
+            line-height: .8;
+        }
+
+        .final-title span {
+            display: block;
+            color: var(--gold-light);
+        }
+
+        .final-names {
+            margin-top: 50px;
+            font-family: "Sacramento", cursive;
+            font-size: 4rem;
+            color: #ddd4c2;
+        }
+
+        .final-date {
+            margin-top: 20px;
+            color: var(--gold);
+            font-size: .65rem;
+            letter-spacing: .35em;
+        }
+
+        .final-small {
+            margin-top: 80px;
+            color: #555c68;
+            font-size: .7rem;
+            letter-spacing: .2em;
+        }
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .section {
+                padding: 100px 0;
+            }
+
+            .chapter {
+                min-height: auto;
+                padding: 100px 0;
+            }
+
+            .chapter-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .chapter-grid.reverse .chapter-content {
+                order: 1;
+            }
+
+            .chapter-grid.reverse .visual {
+                order: 2;
+            }
+
+            .visual {
+                min-height: 350px;
+            }
+
+            .chapter-number {
+                font-size: 7rem;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even),
+            .timeline-item:nth-child(odd) {
+                width: 100%;
+                margin-left: 0;
+                text-align: left;
+                padding-left: 45px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 5px;
+                right: auto;
+            }
+
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item,
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(2),
+            .gallery-item:nth-child(3),
+            .gallery-item:nth-child(4),
+            .gallery-item:nth-child(5),
+            .gallery-item:nth-child(6),
+            .gallery-item:nth-child(7) {
+                grid-column: span 1;
+                min-height: 300px;
+            }
+
+            .counter {
+                gap: 30px;
+            }
+
+            .counter-box {
+                min-width: 70px;
+            }
+
+            .counter-number {
+                font-size: 2.5rem;
+            }
+
+            .letter {
+                padding: 45px 25px;
+            }
+
+            .letter::before {
+                inset: 8px;
+            }
+
+            #musicControl {
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body class="locked">
+
+    <div class="grain"></div>
+    <div id="stars"></div>
+
+    <div id="progress"></div>
+
+    <!-- =========================================================
+         TELA DE ACESSO
+    ========================================================= -->
+
+    <section id="accessScreen">
+
+        <div class="access-content">
+
+            <div class="access-small">
+                antes de entrar...
+            </div>
+
+            <h1 class="access-question">
+                Tenho uma pergunta.
+            </h1>
+
+            <p class="access-subtitle">
+                Uma coisa que você deveria saber<br>
+                depois de tudo que já vivemos.
+            </p>
+
+            <div class="answer-box">
+                <input
+                    type="text"
+                    id="answerInput"
+                    placeholder="Qual é a coisa que eu mais sou apaixonado em você?"
+                    autocomplete="off"
+                >
+            </div>
+
+            <button
+                class="btn"
+                id="answerButton"
+            >
+                responder ♡
+            </button>
+
+            <div
+                class="access-message"
+                id="accessMessage"
+            ></div>
+
+            <button
+                class="btn enter-btn"
+                id="enterButton"
+            >
+                entrar na nossa história →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTEÚDO PRINCIPAL
+    ========================================================= -->
+
+    <main id="main">
+
+        <!-- MÚSICA
+             Troque o arquivo abaixo pelo seu MP3.
+        -->
+
+        <audio id="backgroundMusic" loop>
+            <source src="assets/dizeres.mp3" type="audio/mpeg">
+        </audio>
+
+        <button id="musicControl">
+            ♪
+        </button>
+
+
+        <!-- =====================================================
+             HERO
+        ===================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-pretitle">
+                    Marcos & Mariana
+                </div>
+
+                <h1 class="hero-title">
+                    EU SEMPRE
+                    <span>SOUBE QUE ERA VOCÊ</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    uma história que começou antes mesmo
+                    de nós percebermos.
+                </p>
+
+                <div class="hero-date">
+                    23.05.2026 — ∞
+                </div>
+
+            </div>
+
+            <div class="scroll-indicator">
+                nossa história
+                <div class="scroll-line"></div>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             INTRO
+        ===================================================== -->
+
+        <section class="intro">
+
+            <div class="intro-text reveal">
+
+                <div class="section-label">
+                    capítulo zero
+                </div>
+
+                <div class="intro-line">
+                    Eu te vi.
+                </div>
+
+                <div class="intro-line">
+                    E antes mesmo de existir
+                </div>
+
+                <div class="intro-script">
+                    "nós"
+                </div>
+
+                <div class="intro-line">
+                    eu já tinha uma certeza.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             23/05
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                01
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            23.05.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            A primeira vez
+                            que eu te vi.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                A gente se encontrou em uma festa.
+                            </p>
+
+                            <p>
+                                E eu não sei explicar exatamente como,
+                                mas quando eu te vi eu já tinha aquela
+                                sensação estranha de que...
+                            </p>
+
+                            <p class="highlight">
+                                era você.
+                            </p>
+
+                            <p>
+                                Só que naquela noite a gente resolveu
+                                dificultar um pouco as coisas.
+                            </p>
+
+                            <p>
+                                A gente bebeu.
+                                <strong>Muito.</strong>
+                            </p>
+
+                            <p>
+                                E eu apaguei.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                retrospectiva
+                            </div>
+
+                            <div class="humor-text">
+                                Excelente começo para uma história de amor.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                ✦
+                            </div>
+
+                            <div class="visual-caption">
+                                23 de maio
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             24/05
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                ☾
+                            </div>
+
+                            <div class="visual-caption">
+                                na manhã seguinte
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            24.05.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Encarando
+                            a realidade.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                A festa tinha acabado.
+                                A bebida tinha passado.
+                            </p>
+
+                            <p>
+                                E chegou a hora de encarar a realidade.
+                            </p>
+
+                            <div class="quote">
+                                "Tá... o que aconteceu ontem?"
+                            </div>
+
+                            <p>
+                                Mas tinha uma coisa que já estava ali,
+                                mesmo que a gente ainda não soubesse
+                                exatamente o que fazer com ela.
+                            </p>
+
+                            <p class="highlight">
+                                A certeza.
+                            </p>
+
+                            <p>
+                                E talvez o mais bonito tenha sido perceber
+                                que, naquela primeira noite, enquanto eu
+                                não estava bem...
+                            </p>
+
+                            <p>
+                                você ficou.
+                                Você cuidou de mim.
+                                Você me levou para sua casa.
+                            </p>
+
+                            <p>
+                                Antes mesmo de existir "nós",
+                                você já cuidava de mim.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+            12/06 — A FESTA
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                02
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            12.06.2026 — noite
+                        </div>
+
+                        <h2 class="chapter-title">
+                            A festa.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                A noite do dia 12 chegou.
+                            </p>
+
+                            <p>
+                                Tinha mais uma festa.
+                            </p>
+
+                            <p>
+                                E, no meio daquela noite,
+                                a gente acabou se encontrando de novo.
+                            </p>
+
+                            <p>
+                                Só que você ainda nem tinha chegado.
+                            </p>
+
+                            <p class="highlight">
+                                Porque a história daquele dia
+                                só começaria de verdade depois da meia-noite.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                ✦
+                            </div>
+
+                            <div class="visual-caption">
+                                12 de junho — noite
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+            13/06 — MADRUGADA — PRIMEIRO BEIJO
+        ===================================================== -->
+
+        <section class="quote-section">
+
+            <div class="big-quote">
+
+                E aconteceu o nosso
+
+                <span class="gold">
+                    primeiro beijo.
+                </span>
+
+                <small>
+                    13.06.2026 — madrugada
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+            13/06 — MANHÃ — O CAFÉ
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                03
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                ☕
+                            </div>
+
+                            <div class="visual-caption">
+                                13 de junho — manhã
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            13.06.2026 — manhã
+                        </div>
+
+                        <h2 class="chapter-title">
+                            E depois do beijo,
+                            veio o café.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                A madrugada passou.
+                            </p>
+
+                            <p>
+                                E quando chegou a manhã do dia 13,
+                                eu te chamei para tomar um café.
+                            </p>
+
+                            <p class="highlight">
+                                Sem festa. Sem bebida.
+                                Só nós dois.
+                            </p>
+
+                            <p>
+                                Foi aí que a gente começou
+                                a se conhecer melhor.
+                            </p>
+
+                            <p>
+                                E aparentemente, além de me conquistar,
+                                você também decidiu me apresentar
+                                ao seu gosto por filmes.
+                            </p>
+
+                            <p>
+                                A gente também saiu para o cinema,
+                                e foi quando eu descobri uma coisa
+                                que eu ainda estou tentando entender:
+                            </p>
+
+                            <p class="highlight">
+                                seu gosto por filmes é...
+                                levemente duvidoso. 😂
+                            </p>
+
+                            <p>
+                                E, a partir dali,
+                                a gente começou a ficar junto
+                                praticamente toda semana.
+                            </p>
+
+                            <p class="highlight">
+                                E, sem a gente perceber,
+                                estava começando a nossa história.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             24/06
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                04
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🌧
+                            </div>
+
+                            <div class="visual-caption">
+                                o plano que não deu certo
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            24.06.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            O plano
+                            inicial.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Eu tinha te chamado para assistir
+                                ao jogo da Seleção Brasileira
+                                na Copa do Mundo.
+                            </p>
+
+                            <p>
+                                Só tinha um pequeno problema...
+                            </p>
+
+                            <p class="highlight">
+                                você não gostava de jogo. 😂
+                            </p>
+
+                            <p>
+                                Então eu pensei:
+                                tudo bem, a gente muda os planos.
+                            </p>
+
+                            <p>
+                                Foi aí que surgiu o plano B:
+                                japonês + parque.
+                            </p>
+
+                            <p>
+                                Parecia uma ótima ideia.
+                            </p>
+
+                            <p>
+                                Até a chuva resolver
+                                participar da nossa história.
+                            </p>
+
+                            <p>
+                                E, para completar,
+                                o jogo da Seleção também acabou
+                                atrapalhando nossos planos.
+                            </p>
+
+                            <p>
+                                No final das contas,
+                                o japonês e o parque ficaram para depois.
+                            </p>
+
+                            <p>
+                                E a gente acabou indo parar
+                                em um bar,
+                                bebendo um pouco
+                                e ficando ali conversando.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                moral da história
+                            </div>
+
+                            <div class="humor-text">
+                                O plano perfeito deu errado.
+                                E, de algum jeito,
+                                acabou dando certo.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             08/07
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            08.07.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Finalmente
+                            o parque.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Dessa vez o plano aconteceu.
+                            </p>
+
+                            <p>
+                                Parque.
+                                Japonês.
+                                Nós dois.
+                            </p>
+
+                            <p>
+                                E também o momento em que eu provei que sou muito melhor
+                                no tiro ao alvo que você.
+                            </p>
+
+                            <p>
+                                E eu definitivamente não fiquei com medo
+                                em nenhum brinquedo.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                obviamente
+                            </div>
+
+                            <div class="humor-text">
+                                Definitivamente.
+                            </div>
+
+                        </div>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Depois do parque, fomos comer.
+                            </p>
+
+                            <p>
+                                Até que um homem em situação de rua
+                                pediu algumas coisas para a gente.
+                            </p>
+
+                            <p>
+                                A gente falou que não tinha.
+                            </p>
+
+                            <p class="highlight">
+                                E ele respondeu que a gente também não tinha nada.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                fim da dignidade
+                            </div>
+
+                            <div class="humor-text">
+                                A gente só aceitou.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🎯
+                            </div>
+
+                            <div class="visual-caption">
+                                tiro ao alvo — vitória incontestável
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             19/07
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                04
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🌙
+                            </div>
+
+                            <div class="visual-caption">
+                                a primeira vez que você me chamou
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            19.07.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Dessa vez,
+                            foi você.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Foi a primeira vez que você me chamou
+                                para sair.
+                            </p>
+
+                            <p>
+                                O plano inicial era Flufest.
+                            </p>
+
+                            <p>
+                                Mas, como já era tradição,
+                                o plano mudou.
+                            </p>
+
+                            <p>
+                                Sushi in Rio.
+                            </p>
+
+                            <p>
+                                Depois fomos para o pontilhão.
+                            </p>
+
+                            <p>
+                                Bebendo.
+                                Vendo o pessoal andando de skate.
+                                Conversando sobre a vida.
+                            </p>
+
+                            <p>
+                                E lembrando exatamente por que
+                                a gente não queria ter filhos.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                filosofia de vida
+                            </div>
+
+                            <div class="humor-text">
+                                Crianças? Melhor não.
+                            </div>
+
+                        </div>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Meu celular morreu.
+                            </p>
+
+                            <p>
+                                E acabamos na casa do Alisson.
+                            </p>
+
+                            <p>
+                                Foi a primeira noite que dormimos juntos.
+                            </p>
+
+                            <p>
+                                No dia seguinte eu consegui um atestado
+                                e passei o dia inteiro com você.
+                            </p>
+
+                            <p class="highlight">
+                                E eu não queria que aquele dia acabasse.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             25/07
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            25.07.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Nosso lugar.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Shopping Nova América.
+                            </p>
+
+                            <p>
+                                Nosso lugar favorito.
+                            </p>
+
+                            <p>
+                                E, claro...
+                            </p>
+
+                            <p class="highlight">
+                                Outback.
+                            </p>
+
+                            <p>
+                                Talvez pareça só um almoço.
+                                Mas eu gosto de lembrar de cada
+                                uma dessas coisas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🍽
+                            </div>
+
+                            <div class="visual-caption">
+                                Nova América
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             26/07
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🏠
+                            </div>
+
+                            <div class="visual-caption">
+                                nosso salvador
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            26.07.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            O plano
+                            B.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                O plano era simples.
+                            </p>
+
+                            <p>
+                                Ir para sua casa.
+                                Ficar juntos.
+                                Só nós dois.
+                            </p>
+
+                            <p>
+                                Até descobrirmos que sua mãe estava lá.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                emergência
+                            </div>
+
+                            <div class="humor-text">
+                                Airbnb, nosso salvador. 😂
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             29/07
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                05
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            29.07.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Chopp de vinho
+                            e caos.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Mais uma vez no Nova América.
+                            </p>
+
+                            <p>
+                                Chopp de vinho.
+                            </p>
+
+                            <p>
+                                E um garçom que parecia estar
+                                mais bêbado que nós.
+                            </p>
+
+                        </div>
+
+                        <div class="quote">
+                            "Eu quero a que você tomou."
+                        </div>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                E depois daquele vento forte.
+                            </p>
+
+                            <p>
+                                A luz acabou.
+                            </p>
+
+                            <p>
+                                E, para completar...
+                            </p>
+
+                            <p class="highlight">
+                                você passou o dia seguinte inteiro sem me responder.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                muito tranquilo
+                            </div>
+
+                            <div class="humor-text">
+                                Eu? Preocupado? Imagina.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🍷
+                            </div>
+
+                            <div class="visual-caption">
+                                uma noite para lembrar
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             04/08
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                🌊
+                            </div>
+
+                            <div class="visual-caption">
+                                Mureta da Urca
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            04.08.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Um dia antes
+                            de tudo mudar.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Mureta da Urca.
+                            </p>
+
+                            <p>
+                                A gente viu a praia,
+                                caminhou,
+                                conversou.
+                            </p>
+
+                            <p>
+                                E sem perceber,
+                                estávamos chegando
+                                cada vez mais perto
+                                de uma certeza.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             05/08 — GRANDE MOMENTO
+        ===================================================== -->
+
+        <section class="milestone">
+
+            <div class="container reveal">
+
+                <div class="milestone-date">
+                    05.08.2026
+                </div>
+
+                <h2 class="milestone-title">
+                    A nossa
+                    <span>certeza.</span>
+                </h2>
+
+                <div class="milestone-text">
+
+                    <p>
+                        Rio Innovation Week.
+                    </p>
+
+                    <p>
+                        Ficamos dez minutos.
+                    </p>
+
+                    <p class="highlight">
+                        Dez.
+                    </p>
+
+                    <p>
+                        E fomos embora.
+                    </p>
+
+                    <p>
+                        Fomos comer no flutuante
+                        e depois ficamos na Praia da Urca.
+                    </p>
+
+                    <p>
+                        E ali aconteceu uma das conversas
+                        mais importantes da nossa história.
+                    </p>
+
+                    <p>
+                        A gente confessou o que sentia.
+                    </p>
+
+                    <p class="highlight">
+                        A gente era a certeza um do outro.
+                    </p>
+
+                    <p>
+                        Foi ali que começou oficialmente
+                        a nossa história.
+                    </p>
+
+                </div>
+
+                <div class="love-you">
+                    eu te amo.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             08/08 — MAR
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="chapter-number">
+                06
+            </div>
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            08.08.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Uma promessa
+                            para carregar no dedo.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Museu de Arte do Rio.
+                            </p>
+
+                            <p>
+                                Baía de Guanabara.
+                            </p>
+
+                            <p>
+                                E eu te pedi em namoro.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                observação importante
+                            </div>
+
+                            <div class="humor-text">
+                                Em nenhum momento eu ameacei
+                                te jogar na Baía caso você dissesse não.
+                            </div>
+
+                        </div>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Você disse sim.
+                            </p>
+
+                            <p>
+                                E naquele momento uma coisa
+                                que já existia dentro da gente
+                                ganhou um nome.
+                            </p>
+
+                            <p class="highlight">
+                                Nós.
+                            </p>
+
+                            <p>
+                                Também foi quando as alianças
+                                passaram a fazer parte da nossa história.
+                            </p>
+
+                            <p>
+                                Algumas coisas a gente fala.
+                            </p>
+
+                            <p>
+                                Algumas coisas a gente sente.
+                            </p>
+
+                            <p>
+                                E algumas coisas a gente escolhe
+                                carregar consigo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                💍
+                            </div>
+
+                            <div class="visual-caption">
+                                Marcos & Mariana
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             09/08
+        ===================================================== -->
+
+        <section class="quote-section">
+
+            <div class="big-quote">
+
+                E o dia seguinte
+                ainda era
+                <span class="gold">
+                    nós.
+                </span>
+
+                <small>
+                    09.08.2026
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             14-16/08
+        ===================================================== -->
+
+        <section class="chapter">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="visual-symbol">
+                                ☀
+                            </div>
+
+                            <div class="visual-caption">
+                                três dias de nós
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            14 — 16.08.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Um final de semana
+                            inteiro.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Três dias.
+                            </p>
+
+                            <p>
+                                Mais momentos.
+                            </p>
+
+                            <p>
+                                Mais risadas.
+                            </p>
+
+                            <p>
+                                Mais nós.
+                            </p>
+
+                            <p class="highlight">
+                                E cada vez menos vontade
+                                de ficar longe.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             24/08 — PLANTINHA
+        ===================================================== -->
+
+        <section class="plant-section">
+
+            <div class="container">
+
+                <div class="chapter-grid">
+
+                    <div class="chapter-content reveal">
+
+                        <div class="chapter-date">
+                            24.08.2026
+                        </div>
+
+                        <h2 class="chapter-title">
+                            Nossa primeira
+                            filha.
+                        </h2>
+
+                        <div class="chapter-text">
+
+                            <p>
+                                Você apareceu com uma plantinha.
+                            </p>
+
+                            <p>
+                                E, de alguma forma,
+                                aquilo virou oficialmente...
+                            </p>
+
+                            <p class="highlight">
+                                nossa primeira filha juntos.
+                            </p>
+
+                            <p>
+                                Pequena, indefesa e agora
+                                com duas pessoas responsáveis por ela.
+                            </p>
+
+                        </div>
+
+                        <div class="humor">
+
+                            <div class="humor-label">
+                                oficialmente
+                            </div>
+
+                            <div class="humor-text">
+                                Nossa primeira filha. 🌱
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="visual reveal">
+
+                        <div class="visual-inner">
+
+                            <div class="plant-symbol">
+                                🌱
+                            </div>
+
+                            <div class="visual-caption">
+                                a família começou
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TRANSIÇÃO
+        ===================================================== -->
+
+        <section class="intro">
+
+            <div class="intro-text reveal">
+
+                <div class="section-label">
+                    e daqui pra frente...
+                </div>
+
+                <div class="intro-line">
+                    não existe roteiro.
+                </div>
+
+                <div class="intro-line">
+                    não existe data definida.
+                </div>
+
+                <div class="intro-script">
+                    ainda.
+                </div>
+
+                <div class="intro-line">
+                    porque essa parte
+                    da história ainda está acontecendo.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTADOR
+        ===================================================== -->
+
+        <section class="counter-section">
+
+            <div class="container reveal">
+
+                <div class="section-label">
+                    desde que virou nós
+                </div>
+
+                <h2 class="counter-title">
+                    E cada segundo
+                    continua contando.
+                </h2>
+
+                <div class="counter">
+
+                    <div class="counter-box">
+                        <div
+                            class="counter-number"
+                            id="days"
+                        >
+                            0
+                        </div>
+
+                        <div class="counter-label">
+                            dias
+                        </div>
+                    </div>
+
+                    <div class="counter-box">
+                        <div
+                            class="counter-number"
+                            id="hours"
+                        >
+                            0
+                        </div>
+
+                        <div class="counter-label">
+                            horas
+                        </div>
+                    </div>
+
+                    <div class="counter-box">
+                        <div
+                            class="counter-number"
+                            id="minutes"
+                        >
+                            0
+                        </div>
+
+                        <div class="counter-label">
+                            minutos
+                        </div>
+                    </div>
+
+                    <div class="counter-box">
+                        <div
+                            class="counter-number"
+                            id="seconds"
+                        >
+                            0
+                        </div>
+
+                        <div class="counter-label">
+                            segundos
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FUTURO
+        ===================================================== -->
+
+        <section class="future-section">
+
+            <div class="container">
+
+                <div class="future-header reveal">
+
+                    <div class="section-label">
+                        capítulos que ainda não existem
+                    </div>
+
+                    <h2 class="section-title">
+                        Ainda temos
+                        <span class="gold">
+                            tanto para viver.
+                        </span>
+                    </h2>
+
+                    <p class="section-description"
+                       style="margin:auto;">
+                        Algumas partes dessa história eu ainda não
+                        consigo escrever. Não porque não sei o que quero.
+                        Mas porque quero descobrir tudo isso com você.
+                    </p>
+
+                </div>
+
+
+                <div class="future-grid">
+
+                    <div class="future-card reveal">
+
+                        <div class="future-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Uma casa nossa.
+                        </h3>
+
+                        <p>
+                            Um lugar que tenha um pouco de cada um de nós.
+                        </p>
+
+                    </div>
+
+
+                    <div class="future-card reveal">
+
+                        <div class="future-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Viajar juntos.
+                        </h3>
+
+                        <p>
+                            Conhecer lugares que ainda nem sabemos que existem.
+                        </p>
+
+                    </div>
+
+
+                    <div class="future-card reveal">
+
+                        <div class="future-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Milhares de fotos.
+                        </h3>
+
+                        <p>
+                            Mesmo que metade delas fique horrível.
+                        </p>
+
+                    </div>
+
+
+                    <div class="future-card reveal">
+
+                        <div class="future-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Nossos rituais.
+                        </h3>
+
+                        <p>
+                            Pequenas coisas que só nós dois entendemos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="future-card reveal">
+
+                        <div class="future-number">
+                            05
+                        </div>
+
+                        <h3>
+                            Novos lugares.
+                        </h3>
+
+                        <p>
+                            E provavelmente muitos planos dando errado.
+                        </p>
+
+                    </div>
+
+
+                    <div class="future-card reveal">
+
+                        <div class="future-number">
+                            06
+                        </div>
+
+                        <h3>
+                            Uma vida juntos.
+                        </h3>
+
+                        <p>
+                            Talvez esse seja o maior capítulo de todos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             POR TODAS AS VIDAS
+        ===================================================== -->
+
+        <section class="lives-section">
+
+            <div class="container lives-content reveal">
+
+                <div class="section-label">
+                    se existir outra vida...
+                </div>
+
+                <h2 class="lives-title">
+
+                    Viveremos
+                    <span>
+                        por todas as vidas.
+                    </span>
+
+                </h2>
+
+                <p class="lives-text">
+
+                    E nos veremos em todas elas.
+                    E nos teremos.
+                    Porque se em alguma delas eu puder
+                    escolher de novo...
+                    eu escolheria você.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             TIMELINE
+        ===================================================== -->
+
+        <section class="timeline-section">
+
+            <div class="container">
+
+                <div class="timeline-header reveal">
+
+                    <div class="section-label">
+                        tudo começou assim
+                    </div>
+
+                    <h2 class="section-title">
+                        Nossa linha do tempo.
+                    </h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            23.05.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            O primeiro encontro
+                        </h3>
+
+                        <p class="timeline-description">
+                            Uma festa, muita bebida e uma certeza
+                            que ainda não tinha nome.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            12.06.2026 — noite
+                        </div>
+
+                        <h3 class="timeline-title">
+                            A festa
+                        </h3>
+
+                        <p class="timeline-description">
+                            Mais uma festa. E, naquela noite,
+                            a nossa história estava prestes a mudar.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            13.06.2026 — madrugada
+                        </div>
+
+                        <h3 class="timeline-title">
+                            O primeiro beijo
+                        </h3>
+
+                        <p class="timeline-description">
+                            E aconteceu o nosso primeiro beijo.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            13.06.2026 — manhã
+                        </div>
+
+                        <h3 class="timeline-title">
+                            O café
+                        </h3>
+
+                        <p class="timeline-description">
+                            Depois do beijo, veio o café.
+                            E começamos a nos conhecer melhor.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            24.06.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Plano errado
+                        </h3>
+
+                        <p class="timeline-description">
+                            Jogo, chuva, Copa do Brasil e um bar.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            08.07.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Parque
+                        </h3>
+
+                        <p class="timeline-description">
+                            Tiro ao alvo, brinquedos e a inesquecível
+                            frase do homem na rua.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            19.07.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            A primeira noite
+                        </h3>
+
+                        <p class="timeline-description">
+                            Sushi, pontilhão, skate, celular morto
+                            e um dia inteiro juntos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            25.07.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Nova América
+                        </h3>
+
+                        <p class="timeline-description">
+                            Nosso lugar e Outback.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            26.07.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Airbnb
+                        </h3>
+
+                        <p class="timeline-description">
+                            Nosso salvador.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            29.07.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Chopp de vinho
+                        </h3>
+
+                        <p class="timeline-description">
+                            O garçom, o apagão e o dia sem resposta.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            04.08.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Mureta da Urca
+                        </h3>
+
+                        <p class="timeline-description">
+                            Um dia antes da nossa certeza.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            05.08.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            A certeza
+                        </h3>
+
+                        <p class="timeline-description">
+                            O primeiro "eu te amo" e o começo oficial.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            08.08.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            O pedido
+                        </h3>
+
+                        <p class="timeline-description">
+                            MAR, Baía de Guanabara e alianças.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            14 — 16.08.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Um final de semana
+                        </h3>
+
+                        <p class="timeline-description">
+                            Três dias inteiros de nós.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-date">
+                            24.08.2026
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Nossa primeira filha
+                        </h3>
+
+                        <p class="timeline-description">
+                            Uma pequena plantinha que agora
+                            faz parte da família.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CARTA
+        ===================================================== -->
+
+        <section class="letter-section">
+
+            <div class="container">
+
+                <div class="letter reveal">
+
+                    <div class="letter-title">
+                        Mariana,
+                    </div>
+
+                    <p>
+                        Eu poderia simplesmente te desejar
+                        feliz aniversário.
+                    </p>
+
+                    <p>
+                        Mas eu queria fazer diferente.
+                    </p>
+
+                    <p>
+                        Queria te dar alguma coisa que não coubesse
+                        em uma caixa.
+                    </p>
+
+                    <p>
+                        Alguma coisa que você pudesse guardar.
+                    </p>
+
+                    <p>
+                        Então fiz isso.
+                    </p>
+
+                    <p>
+                        Um pequeno lugar para guardar um pouco
+                        da nossa história.
+                    </p>
+
+                    <p>
+                        23 de maio foi o dia em que eu te vi pela primeira vez.
+                    </p>
+
+                    <p>
+                        13 de junho foi o dia do nosso primeiro beijo.
+                    </p>
+
+                    <p>
+                        5 de agosto foi o dia em que começamos
+                        oficialmente a nossa história.
+                    </p>
+
+                    <p>
+                        E 8 de agosto foi o dia em que coloquei
+                        uma aliança no seu dedo.
+                    </p>
+
+                    <p>
+                        Mas entre essas datas aconteceram tantas
+                        outras coisas.
+                    </p>
+
+                    <p>
+                        Cafés.
+                        Parques.
+                        Sushi.
+                        Barzinhos.
+                        Chopp de vinho.
+                        Praia.
+                        Conversas.
+                        Risadas.
+                    </p>
+
+                    <p>
+                        Planos que deram errado.
+                        Planos que finalmente deram certo.
+                    </p>
+
+                    <p>
+                        E um monte de momentos que talvez pareçam
+                        pequenos para qualquer outra pessoa,
+                        mas que hoje fazem parte da nossa história.
+                    </p>
+
+                    <p>
+                        E talvez seja justamente isso que eu mais gosto.
+                    </p>
+
+                    <p>
+                        A gente não precisou de uma história perfeita.
+                    </p>
+
+                    <p>
+                        A gente só precisou continuar se encontrando.
+                    </p>
+
+                    <p>
+                        Até que um dia percebemos que não queríamos
+                        mais deixar de nos encontrar.
+                    </p>
+
+                    <p class="highlight">
+                        E então virou nós.
+                    </p>
+
+                    <p>
+                        Eu não sei exatamente tudo que o futuro vai trazer.
+                    </p>
+
+                    <p>
+                        Mas sei que ainda existem lugares que não conhecemos.
+                        Fotos que ainda não tiramos.
+                        Viagens que ainda não fizemos.
+                        Abraços que ainda não demos.
+                        Histórias que ainda não contamos.
+                    </p>
+
+                    <p>
+                        E provavelmente muitos planos que vão dar errado
+                        no caminho.
+                    </p>
+
+                    <p>
+                        E, sinceramente?
+                    </p>
+
+                    <p class="highlight">
+                        Eu espero que continuem dando errado.
+                    </p>
+
+                    <p>
+                        Porque, pelo que nossa história já mostrou,
+                        às vezes os melhores momentos começam justamente assim.
+                    </p>
+
+                    <p>
+                        Feliz aniversário, meu amor.
+                    </p>
+
+                    <p>
+                        Obrigado por ter ficado naquela primeira noite.
+                    </p>
+
+                    <p>
+                        Obrigado pelo café.
+                        Pelo primeiro beijo.
+                        Pelas conversas.
+                        Pelas risadas.
+                        Pela companhia.
+                        Pela aliança.
+                        Pela nossa pequena filha planta. 😂
+                    </p>
+
+                    <p>
+                        E, principalmente,
+                        obrigado por ser você.
+                    </p>
+
+                    <p class="highlight">
+                        Eu te amo.
+                    </p>
+
+                    <p>
+                        E se existe uma coisa que eu tenho certeza
+                        desde o começo...
+                    </p>
+
+                    <p class="highlight">
+                        é que eu sempre soube que era você.
+                    </p>
+
+                    <div class="letter-signature">
+                        Com amor,<br>
+                        Marcos.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ANIVERSÁRIO
+        ===================================================== -->
+
+        <section class="birthday">
+
+            <div class="container reveal">
+
+                <div class="birthday-small">
+                    14.09.2026
+                </div>
+
+                <h2 class="birthday-title">
+                    Feliz
+                    <span>aniversário.</span>
+                </h2>
+
+                <p class="birthday-text">
+
+                    Hoje não é apenas o dia em que você nasceu.
+                    É o dia em que eu tenho a sorte de poder
+                    comemorar a existência da pessoa que,
+                    de alguma forma, virou uma das partes mais
+                    importantes da minha vida.
+
+                </p>
+
+                <div class="script gold"
+                     style="font-size:4rem;">
+                    eu te amo, Mariana.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SURPRESA
+        ===================================================== -->
+
+        <section class="secret-section">
+
+            <div class="container reveal">
+
+                <div class="section-label">
+                    espera...
+                </div>
+
+                <h2 class="section-title">
+                    Achou que tinha acabado?
+                </h2>
+
+                <p class="section-description"
+                   style="margin:auto;">
+
+                    Você realmente achou que eu faria tudo isso
+                    e terminaria simplesmente aqui?
+
+                </p>
+
+                <button
+                    class="btn secret-button"
+                    id="secretButton"
+                >
+                    ainda tem uma coisa →
+                </button>
+
+                <div
+                    class="secret-message"
+                    id="secretMessage"
+                >
+
+                    A verdade é que eu poderia escrever
+                    mais mil capítulos aqui.
+
+                    <br><br>
+
+                    Mas prefiro viver os próximos
+                    com você.
+
+                    <br><br>
+
+                    ❤️
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL
+        ===================================================== -->
+
+        <section class="final">
+
+            <div class="container reveal">
+
+                <div class="section-label">
+                    fim?
+                </div>
+
+                <h2 class="final-title">
+
+                    EU SEMPRE
+                    <span>
+                        SOUBE QUE ERA VOCÊ.
+                    </span>
+
+                </h2>
+
+                <div class="final-names">
+                    Marcos ♡ Mariana
+                </div>
+
+                <div class="final-date">
+                    05.08.2026 → ∞
+                </div>
+
+                <div class="final-small">
+                    e essa história ainda está sendo escrita.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           CONFIGURAÇÕES
+        ========================================================= */
+
+        const CONFIG = {
+
+            // =====================================================
+            // RESPOSTA SECRETA
+            // =====================================================
+
+            respostasCorretas: [
+                "olhos",
+                "seus olhos",
+                "os olhos",
+                "seus olhinhos",
+                "olho"
+            ],
+
+            // =====================================================
+            // NÃO PREENCHA SE NÃO QUISER USAR
+            // =====================================================
+
+            PALAVRAS_PROIBIDAS: [
+                "buceta",
+                "perereca",
+                "periquita",
+                "xereca"
+            ],
+
+            // =====================================================
+            // DATA DO INÍCIO OFICIAL DO RELACIONAMENTO
+            // =====================================================
+
+            inicioRelacionamento: "2026-08-05T00:00:00"
+
+        };
+
+
+        /* =========================================================
+           ELEMENTOS
+        ========================================================= */
+
+        const accessScreen =
+            document.getElementById("accessScreen");
+
+        const answerInput =
+            document.getElementById("answerInput");
+
+        const answerButton =
+            document.getElementById("answerButton");
+
+        const accessMessage =
+            document.getElementById("accessMessage");
+
+        const enterButton =
+            document.getElementById("enterButton");
+
+        const main =
+            document.getElementById("main");
+
+        const music =
+            document.getElementById("backgroundMusic");
+
+        const musicControl =
+            document.getElementById("musicControl");
+
+        const secretButton =
+            document.getElementById("secretButton");
+
+        const secretMessage =
+            document.getElementById("secretMessage");
+
+
+        /* =========================================================
+           NORMALIZAR TEXTO
+        ========================================================= */
+
+        function normalize(text) {
+
+            return text
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .trim();
+
+        }
+
+
+        /* =========================================================
+           PERGUNTA SECRETA
+        ========================================================= */
+
+        function checkAnswer() {
+
+            const answer =
+                normalize(answerInput.value);
+
+            if (!answer) {
+
+                accessMessage.innerHTML =
+                    "Você nem tentou. 😂";
+
+                return;
+            }
+
+
+            // =====================================================
+            // RESPOSTA CORRETA
+            // =====================================================
+
+            if (
+                CONFIG.respostasCorretas
+                    .map(normalize)
+                    .includes(answer)
+            ) {
+
+                accessMessage.innerHTML = `
+                    <strong style="color:#e2cb98;">
+                        Acertou.
+                    </strong>
+                    <br><br>
+
+                    Mas também...
+                    <br>
+
+                    eu já falei isso tantas vezes
+                    que você tinha obrigação de saber. 😂
+
+                    <br><br>
+
+                    Pode entrar, Mariana. ❤️
+                `;
+
+                enterButton.classList.add("show");
+
+                answerInput.disabled = true;
+                answerButton.disabled = true;
+
+                return;
+            }
+
+
+            // =====================================================
+            // PEITO
+            // =====================================================
+
+            if (
+                answer.includes("peito")
+            ) {
+
+                accessMessage.innerHTML = `
+                    FORTE.
+                    <br><br>
+                    Mas não é isso.
+                    <br>
+                    Você realmente achou que essa era a resposta? 🤨
+                `;
+
+                return;
+            }
+
+
+            // =====================================================
+            // BUNDA
+            // =====================================================
+
+            if (
+                answer.includes("bunda")
+            ) {
+
+                accessMessage.innerHTML = `
+                    TOP 3.
+                    <br><br>
+                    Mas você sabe que não é
+                    a primeira colocada. 😂
+                `;
+
+                return;
+            }
+
+
+            // =====================================================
+            // PALAVRA PROIBIDA
+            // =====================================================
+
+            if (
+                CONFIG.PALAVRAS_PROIBIDAS.some(
+                    palavra => normalize(palavra) === answer
+                )
+            ) {
+
+                accessMessage.innerHTML = `
+                    Isso não pode aqui não.
+                    <br>
+                    Tô tentando ser fofo aqui. 😭
+                    <br><br>
+                    Você sabe muito bem qual é a resposta.
+                `;
+
+                return;
+            }
+
+
+            // =====================================================
+            // RESPOSTA ERRADA
+            // =====================================================
+
+            accessMessage.innerHTML = `
+                Hmm...
+                <br><br>
+                Não foi dessa vez.
+                <br>
+                Acho que você esqueceu uma coisa
+                que eu vivo falando.
+            `;
+
+        }
+
+
+        answerButton.addEventListener(
+            "click",
+            checkAnswer
+        );
+
+
+        answerInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Enter") {
+                    checkAnswer();
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           ENTRAR NO SITE
+        ========================================================= */
+
+        enterButton.addEventListener(
+            "click",
+            async () => {
+
+                accessScreen.classList.add("hidden");
+
+                document.body.classList.remove("locked");
+
+                setTimeout(() => {
+
+                    main.classList.add("visible");
+
+                }, 300);
+
+
+                musicControl.classList.add("active");
+
+
+                // =================================================
+                // TENTA INICIAR MÚSICA
+                // =================================================
+
+                try {
+
+                    await music.play();
+
+                    musicControl.textContent = "♫";
+
+                } catch (error) {
+
+                    musicControl.textContent = "♪";
+
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           CONTROLE DE MÚSICA
+        ========================================================= */
+
+        musicControl.addEventListener(
+            "click",
+            async () => {
+
+                if (music.paused) {
+
+                    try {
+
+                        await music.play();
+
+                        musicControl.textContent = "♫";
+
+                    } catch (error) {
+
+                        console.log(
+                            "Não foi possível iniciar a música."
+                        );
+
+                    }
+
+                } else {
+
+                    music.pause();
+
+                    musicControl.textContent = "♪";
+
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           PARTÍCULAS / ESTRELAS
+        ========================================================= */
+
+        const starsContainer =
+            document.getElementById("stars");
+
+        const totalStars =
+            window.innerWidth < 700 ? 90 : 160;
+
+
+        for (
+            let i = 0;
+            i < totalStars;
+            i++
+        ) {
+
+            const star =
+                document.createElement("div");
+
+            star.className = "star";
+
+            star.style.left =
+                Math.random() * 100 + "%";
+
+            star.style.top =
+                Math.random() * 100 + "%";
+
+            star.style.animationDelay =
+                Math.random() * 5 + "s";
+
+            star.style.animationDuration =
+                2 + Math.random() * 5 + "s";
+
+            starsContainer.appendChild(star);
+
+        }
+
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                            observer.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .15
+                }
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+
+        /* =========================================================
+           BARRA DE PROGRESSO
+        ========================================================= */
+
+        const progress =
+            document.getElementById("progress");
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                const scrollTop =
+                    window.scrollY;
+
+                const documentHeight =
+                    document.documentElement.scrollHeight -
+                    window.innerHeight;
+
+                const percentage =
+                    (scrollTop / documentHeight) * 100;
+
+                progress.style.width =
+                    percentage + "%";
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =========================================================
+           CONTADOR DESDE 05/08/2026
+        ========================================================= */
+
+        function updateCounter() {
+
+            const start =
+                new Date(
+                    CONFIG.inicioRelacionamento
+                );
+
+            const now =
+                new Date();
+
+            let difference =
+                now - start;
+
+
+            if (difference < 0) {
+                difference = 0;
+            }
+
+
+            const totalSeconds =
+                Math.floor(
+                    difference / 1000
+                );
+
+
+            const days =
+                Math.floor(
+                    totalSeconds / 86400
+                );
+
+
+            const hours =
+                Math.floor(
+                    (totalSeconds % 86400) / 3600
+                );
+
+
+            const minutes =
+                Math.floor(
+                    (totalSeconds % 3600) / 60
+                );
+
+
+            const seconds =
+                totalSeconds % 60;
+
+
+            document.getElementById("days")
+                .textContent =
+                days.toLocaleString("pt-BR");
+
+
+            document.getElementById("hours")
+                .textContent =
+                String(hours).padStart(2, "0");
+
+
+            document.getElementById("minutes")
+                .textContent =
+                String(minutes).padStart(2, "0");
+
+
+            document.getElementById("seconds")
+                .textContent =
+                String(seconds).padStart(2, "0");
+
+        }
+
+
+        updateCounter();
+
+        setInterval(
+            updateCounter,
+            1000
+        );
+
+
+        /* =========================================================
+           BOTÃO DE SURPRESA
+        ========================================================= */
+
+        secretButton.addEventListener(
+            "click",
+            () => {
+
+                secretMessage.classList.add("show");
+
+                secretButton.style.display =
+                    "none";
+
+            }
+        );
+
+
+        /* =========================================================
+           PARALLAX LEVE
+        ========================================================= */
+
+        const hero =
+            document.querySelector(".hero");
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                const scroll =
+                    window.scrollY;
+
+                if (scroll < window.innerHeight) {
+
+                    hero.style.transform =
+                        `translateY(${scroll * .08}px)`;
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* =========================================================
+           CONSOLE
+        ========================================================= */
+
+        console.log(
+            "%cMarcos & Mariana ❤️",
+            "font-size:24px;font-weight:bold;"
+        );
+
+        console.log(
+            "Eu sempre soube que era você."
+        );
+
+    </script>
+
+</body>
+
+</html>
